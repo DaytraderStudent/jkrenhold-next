@@ -8,9 +8,9 @@ const testimonials: Testimonial[] = [
     id: 1,
     initials: "KM",
     name: "Kristine M.",
-    role: "Tønsberg · Vaskehjelp",
+    role: "Tønsberg — Fast vaskehjelp",
     quote:
-      "Endelig en vaskehjelp som gjør jobben skikkelig. Hanna kommer annenhver uke og hjemmet ser fantastisk ut etterpå. Veldig glad for at jeg fant JK Renhold.",
+      "Endelig en vaskehjelp som gjør jobben skikkelig. Hanna kommer annenhver uke og hjemmet ser fantastisk ut etterpå.",
     tags: [
       { text: "Fast avtale", type: "featured" },
       { text: "Vaskehjelp", type: "default" },
@@ -19,49 +19,49 @@ const testimonials: Testimonial[] = [
       { icon: Star, text: "5.0" },
       { icon: MapPin, text: "Vestfold" },
     ],
-    avatarGradient: "linear-gradient(135deg, #2D6A4F, #1B4332)",
+    avatarGradient: "linear-gradient(135deg, #2B5E42, #1A3C2A)",
   },
   {
     id: 2,
     initials: "EB",
     name: "Erik B.",
-    role: "Oslo · Flyttevask",
+    role: "Oslo — Flyttevask",
     quote:
-      "Brukte JK Renhold til flyttevasken da vi solgte leiligheten. Rask respons, grei pris og kjemperesultat. Fikk tilbake hele depositumet uten problemer.",
+      "Rask respons, grei pris og kjemperesultat. Fikk tilbake hele depositumet uten problemer. Anbefales!",
     tags: [
-      { text: "Depositum tilbake", type: "featured" },
+      { text: "Depositum OK", type: "featured" },
       { text: "Flyttevask", type: "default" },
     ],
     stats: [
       { icon: Star, text: "5.0" },
       { icon: MapPin, text: "Oslo" },
     ],
-    avatarGradient: "linear-gradient(135deg, #C8965A, #A67C52)",
+    avatarGradient: "linear-gradient(135deg, #C48B3F, #A0764C)",
   },
   {
     id: 3,
     initials: "ST",
     name: "Silje & Thomas",
-    role: "Bergen · Kontorrenhold",
+    role: "Bergen — Kontorrenhold",
     quote:
-      "Vi har prøvd flere renholdsfirmaer for kontoret. JK Renhold matchet oss med en lokal leverandør som forstår behovene våre. Stor forskjell i kvaliteten.",
+      "JK Renhold matchet oss med en lokal leverandør som forstår behovene våre. Stor forskjell i kvaliteten.",
     tags: [
       { text: "Bedrift", type: "featured" },
-      { text: "Kontorrenhold", type: "default" },
+      { text: "Kontor", type: "default" },
     ],
     stats: [
       { icon: Star, text: "4.9" },
       { icon: MapPin, text: "Bergen" },
     ],
-    avatarGradient: "linear-gradient(135deg, #6B8F71, #2D6A4F)",
+    avatarGradient: "linear-gradient(135deg, #5E8A6A, #2B5E42)",
   },
   {
     id: 4,
     initials: "ML",
     name: "Morten L.",
-    role: "Stavanger · Vaskehjelp",
+    role: "Stavanger — Ukentlig",
     quote:
-      "Ukentlig vaskehjelp som er pålitelig og grundig. Det frigjør tid til det som betyr mest. Anbefales varmt til alle.",
+      "Pålitelig og grundig ukentlig vaskehjelp. Frigjør tid til det som betyr mest. Kan varmt anbefales.",
     tags: [
       { text: "Ukentlig", type: "featured" },
       { text: "Privat", type: "default" },
@@ -70,50 +70,48 @@ const testimonials: Testimonial[] = [
       { icon: Star, text: "5.0" },
       { icon: MapPin, text: "Rogaland" },
     ],
-    avatarGradient: "linear-gradient(135deg, #1B4332, #0E1A14)",
+    avatarGradient: "linear-gradient(135deg, #1A3C2A, #0E1A14)",
   },
 ];
 
 export function Testimonials() {
   return (
-    <section id="kundehistorier" className="py-28 relative">
+    <section id="kundehistorier" className="relative overflow-hidden py-24 lg:py-32">
       <div className="absolute inset-0 grain" />
-      <div className="relative z-10 max-w-6xl mx-auto px-5">
-        <div className="grid lg:grid-cols-[1fr_1.2fr] gap-16 items-center">
-          {/* Left — Text */}
+      <div className="relative z-10 max-w-[1400px] mx-auto px-6 lg:px-10">
+        <div className="grid lg:grid-cols-[1fr_1.1fr] gap-16 items-center">
+          {/* Left */}
           <div>
-            <p className="text-[11px] font-medium text-[#C8965A] uppercase tracking-[0.2em] mb-2">
+            <p className="text-[11px] text-muted-foreground uppercase tracking-[0.25em] mb-4">
               Kundehistorier
             </p>
-            <h2 className="font-heading font-bold text-3xl sm:text-[2.5rem] tracking-tight leading-[1.1] mb-4">
-              Ekte erfaringer fra ekte kunder
+            <h2 className="font-heading italic text-[clamp(2rem,4vw,3.5rem)] leading-[0.95] tracking-[-0.02em] mb-4">
+              Fra de som
+              <br />
+              <span className="text-[#C48B3F]">har prøvd</span>
             </h2>
-            <p className="text-muted-foreground text-sm leading-relaxed mb-8 max-w-sm">
-              Over 1 000 privatpersoner og bedrifter har brukt JK Renhold til å
-              finne sin renholdsleverandør.
+            <p className="text-muted-foreground text-[15px] leading-relaxed mb-10 max-w-sm">
+              Over 1 000 privatpersoner og bedrifter har funnet sin renholdsleverandør gjennom oss.
             </p>
 
-            {/* Stats */}
-            <div className="grid grid-cols-3 gap-6">
-              <div>
-                <p className="font-heading font-bold text-2xl text-foreground">4.8</p>
-                <p className="text-[11px] text-muted-foreground mt-0.5">Snittkarakter</p>
-              </div>
-              <div>
-                <p className="font-heading font-bold text-2xl text-foreground">1 000+</p>
-                <p className="text-[11px] text-muted-foreground mt-0.5">Kunder</p>
-              </div>
-              <div>
-                <p className="font-heading font-bold text-2xl text-foreground">98%</p>
-                <p className="text-[11px] text-muted-foreground mt-0.5">Anbefaler oss</p>
-              </div>
+            {/* Big stats */}
+            <div className="flex gap-12">
+              {[
+                { val: "4.8", label: "Snittkarakter" },
+                { val: "98%", label: "Anbefaler oss" },
+              ].map((s) => (
+                <div key={s.label}>
+                  <span className="font-heading italic text-4xl text-foreground">{s.val}</span>
+                  <p className="text-[11px] text-muted-foreground uppercase tracking-wider mt-1">
+                    {s.label}
+                  </p>
+                </div>
+              ))}
             </div>
           </div>
 
           {/* Right — Swiper */}
-          <div>
-            <TestimonialStack testimonials={testimonials} visibleBehind={2} />
-          </div>
+          <TestimonialStack testimonials={testimonials} visibleBehind={2} />
         </div>
       </div>
     </section>

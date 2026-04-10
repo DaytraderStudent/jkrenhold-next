@@ -1,91 +1,64 @@
 "use client";
 
-import { MapPin } from "lucide-react";
-
 const cities = [
-  "Oslo",
-  "Bergen",
-  "Trondheim",
-  "Stavanger",
-  "Drammen",
-  "Kristiansand",
-  "Fredrikstad",
-  "Tønsberg",
-  "Sandefjord",
-  "Tromsø",
-  "Bodø",
-  "Ålesund",
-  "Haugesund",
-  "Larvik",
-  "Skien",
-  "Porsgrunn",
-  "Moss",
-  "Sarpsborg",
-  "Horten",
-  "Arendal",
+  "Oslo", "Bergen", "Trondheim", "Stavanger", "Drammen", "Kristiansand",
+  "Fredrikstad", "Tønsberg", "Sandefjord", "Tromsø", "Bodø", "Ålesund",
+  "Haugesund", "Larvik", "Skien", "Porsgrunn", "Moss", "Sarpsborg",
+  "Horten", "Arendal", "Molde", "Lillehammer", "Hamar", "Gjøvik",
 ];
 
 export function Areas() {
   return (
-    <section id="omrader" className="py-28 bg-[#0E1A14] relative overflow-hidden">
-      <div className="absolute inset-0 grain" />
-      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[900px] h-[300px] bg-[#2D6A4F]/6 rounded-full blur-[120px]" />
+    <section id="omrader" className="relative overflow-hidden py-20">
+      {/* Full-width marquee — editorial feel */}
+      <div className="divider-editorial mb-16" />
 
-      <div className="relative z-10 max-w-6xl mx-auto px-5">
-        <div className="text-center max-w-lg mx-auto mb-14">
-          <p className="text-[11px] font-medium text-[#C8965A] uppercase tracking-[0.2em] mb-2">
-            Dekning
-          </p>
-          <h2 className="font-heading font-bold text-3xl sm:text-[2.5rem] tracking-tight text-white leading-[1.1] mb-3">
-            Lokalt renhold, hele landet
+      <div className="max-w-[1400px] mx-auto px-6 lg:px-10 mb-12">
+        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
+          <h2 className="font-heading italic text-[clamp(2rem,4vw,3.5rem)] leading-[0.95] tracking-[-0.02em]">
+            Vi dekker <span className="text-[#C48B3F]">hele</span> Norge
           </h2>
-          <p className="text-white/35 text-sm leading-relaxed">
-            Vi har partnere i over 50 byer og kommuner. Finner vi ikke dekning i ditt område, hjelper vi deg videre.
-          </p>
-        </div>
-
-        {/* Marquee */}
-        <div className="overflow-hidden relative">
-          <div className="absolute left-0 top-0 bottom-0 w-24 bg-gradient-to-r from-[#0E1A14] to-transparent z-10" />
-          <div className="absolute right-0 top-0 bottom-0 w-24 bg-gradient-to-l from-[#0E1A14] to-transparent z-10" />
-
-          <div className="marquee-track" style={{ "--duration": "35s", "--gap": "1rem" } as React.CSSProperties}>
-            {[...cities, ...cities].map((city, i) => (
-              <a
-                key={i}
-                href="#tilbud"
-                className="shrink-0 flex items-center gap-2 px-5 py-2.5 rounded-full border border-white/[0.06] bg-white/[0.03] text-white/50 text-sm hover:bg-white/[0.06] hover:text-white/80 transition-colors cursor-pointer whitespace-nowrap"
-              >
-                <MapPin className="w-3 h-3 text-[#2D6A4F]" />
-                {city}
-              </a>
-            ))}
-          </div>
-
-          <div className="marquee-track mt-3" style={{ "--duration": "40s", "--gap": "1rem", animationDirection: "reverse" } as React.CSSProperties}>
-            {[...cities.slice(10), ...cities.slice(0, 10), ...cities.slice(10), ...cities.slice(0, 10)].map((city, i) => (
-              <a
-                key={i}
-                href="#tilbud"
-                className="shrink-0 flex items-center gap-2 px-5 py-2.5 rounded-full border border-white/[0.06] bg-white/[0.03] text-white/50 text-sm hover:bg-white/[0.06] hover:text-white/80 transition-colors cursor-pointer whitespace-nowrap"
-              >
-                <MapPin className="w-3 h-3 text-[#C8965A]/50" />
-                {city}
-              </a>
-            ))}
-          </div>
-        </div>
-
-        <div className="text-center mt-10">
-          <p className="text-[13px] text-white/25">
-            Ser du ikke din by?{" "}
-            <a href="#tilbud" className="text-[#C8965A]/60 hover:text-[#C8965A] transition-colors underline underline-offset-2">
-              Send en forespørsel
-            </a>{" "}
-            — vi utvider hele tiden.
+          <p className="text-muted-foreground text-sm max-w-xs leading-relaxed">
+            50+ byer og kommuner. Ser du ikke din by?{" "}
+            <a href="#tilbud" className="text-foreground underline underline-offset-2">
+              Spør oss
+            </a>
+            .
           </p>
         </div>
       </div>
+
+      {/* Marquee rows */}
+      <div className="overflow-hidden mb-4">
+        <div className="marquee-strip" style={{ "--duration": "40s" } as React.CSSProperties}>
+          {[...cities, ...cities].map((city, i) => (
+            <span
+              key={i}
+              className="shrink-0 font-heading italic text-[2rem] sm:text-[2.8rem] text-foreground/[0.06] hover:text-foreground/20 transition-colors duration-700 cursor-default whitespace-nowrap"
+            >
+              {city}
+            </span>
+          ))}
+        </div>
+      </div>
+
+      <div className="overflow-hidden">
+        <div
+          className="marquee-strip"
+          style={{ "--duration": "50s", animationDirection: "reverse" } as React.CSSProperties}
+        >
+          {[...cities.slice(12), ...cities.slice(0, 12), ...cities.slice(12), ...cities.slice(0, 12)].map((city, i) => (
+            <span
+              key={i}
+              className="shrink-0 font-heading italic text-[2rem] sm:text-[2.8rem] text-foreground/[0.06] hover:text-foreground/20 transition-colors duration-700 cursor-default whitespace-nowrap"
+            >
+              {city}
+            </span>
+          ))}
+        </div>
+      </div>
+
+      <div className="divider-editorial mt-16" />
     </section>
   );
 }

@@ -1,15 +1,15 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Menu, X, Phone } from "lucide-react";
-import { buttonVariants } from "@/components/ui/button";
+import { Menu, X } from "lucide-react";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 
 const links = [
   { name: "Tjenester", href: "#tjenester" },
-  { name: "Slik fungerer det", href: "#prosess" },
+  { name: "Prosess", href: "#prosess" },
+  { name: "Priser", href: "#priser" },
   { name: "Kundehistorier", href: "#kundehistorier" },
-  { name: "Områder", href: "#omrader" },
+  { name: "Kontakt", href: "#kontakt" },
 ];
 
 export function Navigation() {
@@ -24,94 +24,78 @@ export function Navigation() {
 
   return (
     <header
-      className={`fixed top-0 inset-x-0 z-50 transition-all duration-500 ${
+      className={`fixed top-0 inset-x-0 z-50 transition-all duration-700 ${
         scrolled
-          ? "bg-[#F8F7F4]/80 backdrop-blur-xl border-b border-border/50 shadow-[0_1px_3px_rgba(0,0,0,0.04)]"
+          ? "bg-[#F6F4EF]/80 backdrop-blur-2xl border-b border-border/40"
           : ""
       }`}
+      style={{ transitionTimingFunction: "var(--ease-out-expo)" }}
     >
-      <div className="max-w-6xl mx-auto flex items-center justify-between h-16 px-5">
-        {/* Logo */}
-        <a href="#" className="flex items-center gap-2.5 group">
-          <div className="w-8 h-8 rounded-md bg-primary flex items-center justify-center transition-transform duration-300 group-hover:scale-105">
-            <span className="font-heading font-bold text-primary-foreground text-xs tracking-tight">
-              JK
-            </span>
-          </div>
-          <span className="font-heading font-semibold text-[15px] text-foreground tracking-tight">
-            JK Renhold
+      <div className="max-w-[1400px] mx-auto flex items-center justify-between h-[72px] px-6 lg:px-10">
+        <a href="#" className="flex items-center gap-3 group">
+          <span className="font-heading italic text-2xl text-foreground tracking-tight">
+            JK
+          </span>
+          <span className="hidden sm:block w-px h-5 bg-border" />
+          <span className="hidden sm:block text-[11px] text-muted-foreground uppercase tracking-[0.2em] font-medium">
+            Renhold
           </span>
         </a>
 
-        {/* Desktop links */}
-        <nav className="hidden md:flex items-center gap-1">
+        <nav className="hidden lg:flex items-center gap-8">
           {links.map((l) => (
             <a
               key={l.name}
               href={l.href}
-              className="px-3 py-1.5 text-[13px] font-medium text-foreground/60 hover:text-foreground transition-colors rounded-md hover:bg-black/[0.03]"
+              className="text-[13px] text-foreground/50 hover:text-foreground transition-colors duration-300"
+              style={{ transitionTimingFunction: "var(--ease-out-expo)" }}
             >
               {l.name}
             </a>
           ))}
         </nav>
 
-        {/* Desktop CTA */}
-        <div className="hidden md:flex items-center gap-4">
-          <a
-            href="tel:+4790000000"
-            className="text-[13px] text-muted-foreground hover:text-foreground transition-colors flex items-center gap-1.5"
-          >
-            <Phone className="w-3 h-3" />
-            900 00 000
-          </a>
+        <div className="hidden lg:block">
           <a
             href="#tilbud"
-            className={buttonVariants({
-              className:
-                "bg-primary text-primary-foreground hover:bg-primary/90 text-[13px] font-medium h-8 px-4 cursor-pointer",
-            })}
+            className="relative text-[13px] font-medium text-foreground border border-foreground/15 rounded-full px-6 py-2.5 hover:bg-foreground hover:text-background transition-all duration-500 cursor-pointer"
+            style={{ transitionTimingFunction: "var(--ease-in-out)" }}
           >
             Få tilbud
           </a>
         </div>
 
-        {/* Mobile */}
         <Sheet open={open} onOpenChange={setOpen}>
-          <SheetTrigger className="md:hidden p-1.5 cursor-pointer" aria-label="Meny">
+          <SheetTrigger className="lg:hidden cursor-pointer" aria-label="Meny">
             {open ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
           </SheetTrigger>
-          <SheetContent side="right" className="w-72 p-8">
-            <nav className="flex flex-col gap-1 mt-12">
-              {links.map((l) => (
+          <SheetContent side="right" className="w-80 p-0 bg-[#F6F4EF]">
+            <div className="flex flex-col h-full pt-20 px-8 pb-8">
+              <nav className="flex flex-col gap-0">
+                {links.map((l, i) => (
+                  <a
+                    key={l.name}
+                    href={l.href}
+                    onClick={() => setOpen(false)}
+                    className="py-4 text-2xl font-heading italic text-foreground/80 hover:text-foreground border-b border-border/40 transition-colors"
+                  >
+                    {l.name}
+                  </a>
+                ))}
+              </nav>
+              <div className="mt-auto">
                 <a
-                  key={l.name}
-                  href={l.href}
+                  href="#tilbud"
                   onClick={() => setOpen(false)}
-                  className="py-2.5 text-[15px] text-foreground/80 hover:text-foreground transition-colors"
+                  className="block w-full text-center bg-foreground text-background py-4 rounded-full text-sm font-medium"
                 >
-                  {l.name}
+                  Få gratis tilbud
                 </a>
-              ))}
-              <div className="h-px bg-border my-4" />
-              <a
-                href="tel:+4790000000"
-                className="flex items-center gap-2 text-sm text-muted-foreground mb-4"
-              >
-                <Phone className="w-4 h-4" />
-                900 00 000
-              </a>
-              <a
-                href="#tilbud"
-                onClick={() => setOpen(false)}
-                className={buttonVariants({
-                  className:
-                    "bg-primary text-primary-foreground w-full justify-center cursor-pointer",
-                })}
-              >
-                Få gratis tilbud
-              </a>
-            </nav>
+                <p className="text-[11px] text-muted-foreground text-center mt-4">
+                  post@jkrenhold.no · 900 00 000
+                </p>
+              </div>
+            </div>
           </SheetContent>
         </Sheet>
       </div>

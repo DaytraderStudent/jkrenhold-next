@@ -1,103 +1,110 @@
 "use client";
 
 import Image from "next/image";
-import { buttonVariants } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 
 export function HowItWorks() {
-  const steps = [
-    {
-      num: "01",
-      title: "Fortell oss hva du trenger",
-      body: "Fyll ut skjemaet med type renhold, adresse og ønsket frekvens. Under 60 sekunder.",
-    },
-    {
-      num: "02",
-      title: "Vi matcher deg",
-      body: "Innen 24 timer finner vi den beste lokale leverandøren for akkurat ditt behov og budsjett.",
-    },
-    {
-      num: "03",
-      title: "Nyt et rent hjem",
-      body: "Renholderne kommer som avtalt. Vi følger opp for å sikre at du er 100 % fornøyd.",
-    },
-  ];
-
   return (
-    <section id="prosess" className="py-28 relative overflow-hidden">
+    <section id="prosess" className="relative overflow-hidden">
       <div className="absolute inset-0 grain" />
-      <div className="relative z-10 max-w-6xl mx-auto px-5">
-        <div className="grid lg:grid-cols-2 gap-16 items-center">
-          {/* Left — Image collage */}
-          <div className="relative">
-            <div className="relative aspect-[4/5] rounded-2xl overflow-hidden">
+
+      <div className="relative z-10 max-w-[1400px] mx-auto px-6 lg:px-10 py-24 lg:py-32">
+        {/* Editorial heading — left aligned, dramatic */}
+        <div className="mb-20 lg:mb-28">
+          <p className="text-[11px] text-muted-foreground uppercase tracking-[0.25em] mb-4">
+            Prosess
+          </p>
+          <h2 className="font-heading italic text-[clamp(2.5rem,5vw,5rem)] leading-[0.95] tracking-[-0.02em]">
+            Tre steg.
+            <br />
+            <span className="text-[#C48B3F]">Null stress.</span>
+          </h2>
+        </div>
+
+        {/* Steps — editorial row layout with alternating image */}
+        <div className="flex flex-col gap-0">
+          {/* Step 1 */}
+          <div className="grid lg:grid-cols-[1fr_1fr] gap-10 items-center py-12 lg:py-16 border-t border-border/60">
+            <div className="flex gap-8 items-start">
+              <span className="font-heading italic text-[5rem] lg:text-[7rem] text-foreground/[0.04] leading-none shrink-0 -mt-4">
+                01
+              </span>
+              <div>
+                <h3 className="font-heading italic text-2xl mb-3">
+                  Fortell oss hva du trenger
+                </h3>
+                <p className="text-muted-foreground text-[15px] leading-relaxed max-w-sm">
+                  Fyll ut et kort skjema med type renhold, adressen din og ønsket frekvens. Det tar under 60 sekunder.
+                </p>
+              </div>
+            </div>
+            <div className="relative h-[240px] rounded-2xl overflow-hidden lg:ml-auto lg:w-[85%]">
               <Image
-                src="https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=800&q=80"
-                alt="Profesjonell rengjøring"
+                src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=800&q=80"
+                alt="Lyst stueinteriør"
                 fill
                 className="object-cover"
-                sizes="(max-width: 1024px) 100vw, 50vw"
+                sizes="(max-width: 1024px) 100vw, 40vw"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#0E1A14]/40 to-transparent" />
-            </div>
-
-            {/* Floating stat card */}
-            <div className="absolute -bottom-6 -right-4 sm:right-8 bg-white rounded-xl shadow-xl shadow-black/10 p-5 border border-border/60">
-              <p className="font-heading font-bold text-2xl text-[#1B4332]">24t</p>
-              <p className="text-[11px] text-muted-foreground mt-0.5">Gjennomsnittlig responstid</p>
-            </div>
-
-            {/* Floating badge */}
-            <div className="absolute top-6 -left-3 sm:left-6 bg-[#1B4332] text-white rounded-lg px-4 py-2.5 shadow-lg">
-              <p className="font-heading font-bold text-sm">100%</p>
-              <p className="text-[10px] text-white/50">Gratis formidling</p>
             </div>
           </div>
 
-          {/* Right — Steps */}
-          <div>
-            <p className="text-[11px] font-medium text-[#C8965A] uppercase tracking-[0.2em] mb-2">
-              Prosess
-            </p>
-            <h2 className="font-heading font-bold text-3xl sm:text-[2.5rem] tracking-tight leading-[1.1] mb-4">
-              Tre steg til rent hjem
-            </h2>
-            <p className="text-muted-foreground text-[15px] leading-relaxed mb-10 max-w-md">
-              Vi har gjort det enkelt å finne riktig renholder. Du trenger bare å fortelle oss hva du trenger.
-            </p>
-
-            <div className="flex flex-col gap-8">
-              {steps.map((s) => (
-                <div key={s.num} className="flex gap-5 group">
-                  <div className="shrink-0 w-12 h-12 rounded-xl bg-[#1B4332]/[0.06] flex items-center justify-center group-hover:bg-[#1B4332] transition-colors duration-300">
-                    <span className="font-heading font-bold text-sm text-[#1B4332]/40 group-hover:text-white transition-colors duration-300">
-                      {s.num}
-                    </span>
-                  </div>
-                  <div>
-                    <h3 className="font-heading font-semibold text-[15px] mb-1">
-                      {s.title}
-                    </h3>
-                    <p className="text-[13px] text-muted-foreground leading-relaxed">
-                      {s.body}
-                    </p>
-                  </div>
-                </div>
-              ))}
+          {/* Step 2 */}
+          <div className="grid lg:grid-cols-[1fr_1fr] gap-10 items-center py-12 lg:py-16 border-t border-border/60">
+            <div className="relative h-[240px] rounded-2xl overflow-hidden order-2 lg:order-1 lg:w-[85%]">
+              <Image
+                src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=800&q=80"
+                alt="Rent kjøkken"
+                fill
+                className="object-cover"
+                sizes="(max-width: 1024px) 100vw, 40vw"
+              />
             </div>
+            <div className="flex gap-8 items-start order-1 lg:order-2">
+              <span className="font-heading italic text-[5rem] lg:text-[7rem] text-foreground/[0.04] leading-none shrink-0 -mt-4">
+                02
+              </span>
+              <div>
+                <h3 className="font-heading italic text-2xl mb-3">
+                  Vi matcher deg
+                </h3>
+                <p className="text-muted-foreground text-[15px] leading-relaxed max-w-sm">
+                  Innen 24 timer kontakter vi deg med den beste lokale leverandøren, tilpasset dine behov og budsjett.
+                </p>
+              </div>
+            </div>
+          </div>
 
-            <div className="mt-10">
-              <a
-                href="#tilbud"
-                className={buttonVariants({
-                  size: "lg",
-                  className:
-                    "bg-[#1B4332] text-white hover:bg-[#1B4332]/90 h-11 px-6 text-sm font-medium cursor-pointer group",
-                })}
-              >
-                Start her — det er gratis
-                <ArrowRight className="w-3.5 h-3.5 ml-2 transition-transform group-hover:translate-x-1" />
-              </a>
+          {/* Step 3 */}
+          <div className="grid lg:grid-cols-[1fr_1fr] gap-10 items-center py-12 lg:py-16 border-t border-border/60">
+            <div className="flex gap-8 items-start">
+              <span className="font-heading italic text-[5rem] lg:text-[7rem] text-foreground/[0.04] leading-none shrink-0 -mt-4">
+                03
+              </span>
+              <div>
+                <h3 className="font-heading italic text-2xl mb-3">
+                  Nyt et rent hjem
+                </h3>
+                <p className="text-muted-foreground text-[15px] leading-relaxed max-w-sm mb-6">
+                  Velg leverandøren som passer deg. Vi følger opp og garanterer kvaliteten — hver gang.
+                </p>
+                <a
+                  href="#tilbud"
+                  className="inline-flex items-center gap-2 text-sm font-medium text-foreground border-b border-foreground/20 pb-0.5 hover:border-foreground transition-colors duration-500 cursor-pointer group"
+                >
+                  Kom i gang — det er gratis
+                  <ArrowRight className="w-3.5 h-3.5 transition-transform duration-500 group-hover:translate-x-1" />
+                </a>
+              </div>
+            </div>
+            <div className="relative h-[240px] rounded-2xl overflow-hidden lg:ml-auto lg:w-[85%]">
+              <Image
+                src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&q=80"
+                alt="Flott stue"
+                fill
+                className="object-cover"
+                sizes="(max-width: 1024px) 100vw, 40vw"
+              />
             </div>
           </div>
         </div>

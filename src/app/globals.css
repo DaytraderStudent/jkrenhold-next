@@ -47,7 +47,6 @@
   --radius-3xl: calc(var(--radius) * 2.2);
   --radius-4xl: calc(var(--radius) * 2.6);
   --animate-spotlight: spotlight 2s ease .75s 1 forwards;
-  --animate-marquee: marquee var(--duration) infinite linear;
 }
 
 @keyframes spotlight {
@@ -57,42 +56,59 @@
 
 @keyframes marquee {
   from { transform: translateX(0); }
-  to { transform: translateX(calc(-100% - var(--gap))); }
+  to { transform: translateX(calc(-50% - 0.5rem)); }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-12px) rotate(1deg); }
+}
+
+@keyframes reveal-up {
+  from { opacity: 0; transform: translateY(40px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes counter {
+  from { opacity: 0; transform: translateY(20px) scale(0.95); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
 }
 
 :root {
-  --background: #F8F7F4;
-  --foreground: #171412;
-  --card: #ffffff;
-  --card-foreground: #171412;
-  --popover: #ffffff;
-  --popover-foreground: #171412;
-  --primary: #1B4332;
-  --primary-foreground: #F8F7F4;
-  --secondary: #EDE8DF;
-  --secondary-foreground: #171412;
-  --muted: #F2EEE8;
-  --muted-foreground: #78716C;
-  --accent: #C8965A;
-  --accent-foreground: #171412;
+  --background: #F6F4EF;
+  --foreground: #141210;
+  --card: #FFFFFF;
+  --card-foreground: #141210;
+  --popover: #FFFFFF;
+  --popover-foreground: #141210;
+  --primary: #1A3C2A;
+  --primary-foreground: #F6F4EF;
+  --secondary: #EBE7DF;
+  --secondary-foreground: #141210;
+  --muted: #F0ECE5;
+  --muted-foreground: #7A756D;
+  --accent: #C48B3F;
+  --accent-foreground: #141210;
   --destructive: #B91C1C;
-  --border: #E7E0D5;
-  --input: #E7E0D5;
-  --ring: #1B4332;
-  --chart-1: #1B4332;
-  --chart-2: #C8965A;
-  --chart-3: #6B8F71;
-  --chart-4: #A67C52;
-  --chart-5: #2D6A4F;
+  --border: #DDD8CE;
+  --input: #DDD8CE;
+  --ring: #1A3C2A;
+  --chart-1: #1A3C2A;
+  --chart-2: #C48B3F;
+  --chart-3: #5E8A6A;
+  --chart-4: #A0764C;
+  --chart-5: #2B5E42;
   --radius: 0.625rem;
-  --sidebar: #F8F7F4;
-  --sidebar-foreground: #171412;
-  --sidebar-primary: #1B4332;
-  --sidebar-primary-foreground: #F8F7F4;
-  --sidebar-accent: #EDE8DF;
-  --sidebar-accent-foreground: #171412;
-  --sidebar-border: #E7E0D5;
-  --sidebar-ring: #1B4332;
+  --sidebar: #F6F4EF;
+  --sidebar-foreground: #141210;
+  --sidebar-primary: #1A3C2A;
+  --sidebar-primary-foreground: #F6F4EF;
+  --sidebar-accent: #EBE7DF;
+  --sidebar-accent-foreground: #141210;
+  --sidebar-border: #DDD8CE;
+  --sidebar-ring: #1A3C2A;
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
 }
 
 @layer base {
@@ -101,6 +117,8 @@
   }
   body {
     @apply bg-background text-foreground;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
   html {
     @apply font-sans;
@@ -109,55 +127,11 @@
 }
 
 ::selection {
-  background-color: #1B4332;
-  color: #F8F7F4;
+  background-color: #1A3C2A;
+  color: #F6F4EF;
 }
 
-/* Glass testimonial swiper styles */
-.testimonials-stack {
-  position: relative;
-  width: 100%;
-  max-width: 600px;
-  height: 340px;
-  margin: 0 auto;
-}
-
-.testimonial-card {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  border-radius: 1rem;
-  border: 1px solid var(--border);
-  background: var(--card);
-  transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1),
-              opacity 0.5s cubic-bezier(0.22, 1, 0.36, 1);
-  cursor: grab;
-  user-select: none;
-}
-
-.testimonial-card.is-dragging {
-  transition: none;
-  cursor: grabbing;
-}
-
-.pagination-dot {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: var(--border);
-  border: none;
-  cursor: pointer;
-  transition: all 0.3s;
-}
-
-.pagination-dot.active {
-  background: var(--primary);
-  width: 24px;
-  border-radius: 4px;
-}
-
-/* Grain overlay */
+/* ---- GRAIN TEXTURE ---- */
 .grain::after {
   content: '';
   position: absolute;
@@ -168,19 +142,88 @@
   z-index: 0;
 }
 
-/* Marquee */
-.marquee-track {
-  display: flex;
-  gap: var(--gap, 2rem);
-  animation: marquee var(--duration, 30s) linear infinite;
+/* ---- BUTTON SWEEP ---- */
+.btn-sweep {
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+  transition: color 0.5s var(--ease-in-out);
+}
+.btn-sweep::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: currentColor;
+  transform: translateX(-101%);
+  transition: transform 0.5s var(--ease-in-out);
+  z-index: -1;
+}
+.btn-sweep:hover::before {
+  transform: translateX(0);
 }
 
-.marquee-track:hover {
-  animation-play-state: paused;
+/* ---- MARQUEE ---- */
+.marquee-strip {
+  display: flex;
+  gap: 1rem;
+  animation: marquee 30s linear infinite;
+  width: max-content;
+}
+.marquee-strip:hover { animation-play-state: paused; }
+
+/* ---- TESTIMONIAL SWIPER ---- */
+.testimonials-stack {
+  position: relative;
+  width: 100%;
+  max-width: 560px;
+  height: 320px;
+  margin: 0 auto;
+}
+.testimonial-card {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%;
+  border-radius: 1rem;
+  border: 1px solid var(--border);
+  background: var(--card);
+  transition: transform 0.6s var(--ease-out-expo),
+              opacity 0.6s var(--ease-out-expo);
+  cursor: grab;
+  user-select: none;
+}
+.testimonial-card.is-dragging { transition: none; cursor: grabbing; }
+.pagination-dot {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--border);
+  border: none;
+  cursor: pointer;
+  transition: all 0.4s var(--ease-out-expo);
+}
+.pagination-dot.active {
+  background: var(--primary);
+  width: 20px;
+  border-radius: 3px;
+}
+
+/* ---- VIEW ANIMATION ---- */
+.reveal {
+  animation: reveal-up 0.8s var(--ease-out-expo) both;
+}
+.reveal-d1 { animation-delay: 0.1s; }
+.reveal-d2 { animation-delay: 0.2s; }
+.reveal-d3 { animation-delay: 0.3s; }
+.reveal-d4 { animation-delay: 0.4s; }
+
+/* ---- EDITORIAL DIVIDER ---- */
+.divider-editorial {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--border), transparent);
 }
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
-  .marquee-track { animation: none; }
+  .marquee-strip { animation: none; flex-wrap: wrap; }
   .testimonial-card { transition: none; }
+  .reveal { animation: none; opacity: 1; }
 }

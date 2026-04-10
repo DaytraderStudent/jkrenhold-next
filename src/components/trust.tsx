@@ -11,89 +11,71 @@ import {
 } from "lucide-react";
 
 const items = [
-  {
-    icon: ShieldCheck,
-    title: "Kvalitetsgaranti",
-    body: "Ikke fornøyd med jobben? Vi sender en ny renholder uten ekstra kostnad.",
-  },
-  {
-    icon: Award,
-    title: "Sertifiserte partnere",
-    body: "Alle har godkjent renholdskort fra Arbeidstilsynet og sjekket referanser.",
-  },
-  {
-    icon: BadgeCheck,
-    title: "Full ansvarsforsikring",
-    body: "Alle oppdrag er dekket av forsikring. Trygt for deg, dine ting og ditt hjem.",
-  },
-  {
-    icon: MapPin,
-    title: "Lokale renholdere",
-    body: "Partnere som kjenner nærområdet ditt og kan komme raskt når du trenger det.",
-  },
-  {
-    icon: Clock,
-    title: "Svar innen 24 timer",
-    body: "Rask respons og matching med riktig leverandør basert på dine behov.",
-  },
-  {
-    icon: HeartHandshake,
-    title: "Personlig oppfølging",
-    body: "En dedikert kontaktperson som sørger for at alt fungerer som det skal.",
-  },
+  { icon: ShieldCheck, title: "Kvalitetsgaranti", body: "Ikke fornøyd? Ny renholder — gratis." },
+  { icon: Award, title: "Sertifiserte", body: "Godkjent renholdskort og referanser." },
+  { icon: BadgeCheck, title: "Forsikret", body: "Full ansvarsforsikring på alle oppdrag." },
+  { icon: MapPin, title: "Lokalt", body: "Renholdere fra ditt nærområde." },
+  { icon: Clock, title: "24t respons", body: "Rask matching og oppfølging." },
+  { icon: HeartHandshake, title: "Personlig", body: "Dedikert kontaktperson for deg." },
 ];
 
 export function Trust() {
   return (
-    <section className="py-28 bg-[#0E1A14] relative overflow-hidden">
+    <section className="relative bg-[#1A3C2A] overflow-hidden">
       <div className="absolute inset-0 grain" />
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-[#1B4332]/10 rounded-full blur-[150px]" />
 
-      <div className="relative z-10 max-w-6xl mx-auto px-5">
-        <div className="grid lg:grid-cols-[1fr_1.3fr] gap-16 items-center">
-          {/* Left — Text + image */}
-          <div>
-            <p className="text-[11px] font-medium text-[#C8965A] uppercase tracking-[0.2em] mb-2">
-              Hvorfor JK Renhold
-            </p>
-            <h2 className="font-heading font-bold text-3xl sm:text-[2.5rem] tracking-tight text-white leading-[1.1] mb-4">
-              Trygghet i hver detalj
-            </h2>
-            <p className="text-white/35 text-[15px] leading-relaxed mb-8 max-w-sm">
-              Vi tar kvalitet og sikkerhet på alvor. Alle partnere er nøye utvalgt, kontrollert og følges opp.
-            </p>
-
-            {/* Image */}
-            <div className="relative aspect-[16/10] rounded-xl overflow-hidden">
+      <div className="relative z-10 max-w-[1400px] mx-auto px-6 lg:px-10 py-24 lg:py-32">
+        <div className="grid lg:grid-cols-[1fr_1.1fr] gap-16 lg:gap-24 items-center">
+          {/* Left — overlapping images */}
+          <div className="relative">
+            <div className="relative aspect-[4/5] rounded-2xl overflow-hidden">
               <Image
-                src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=800&q=80"
-                alt="Rent og ryddig hjem"
+                src="https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=800&q=80"
+                alt="Profesjonell rengjøring"
                 fill
                 className="object-cover"
-                sizes="(max-width: 1024px) 100vw, 40vw"
+                sizes="(max-width: 1024px) 100vw, 45vw"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#0E1A14]/50 to-transparent" />
+            </div>
+            {/* Secondary overlapping image */}
+            <div className="absolute -bottom-8 -right-4 sm:right-6 w-[55%] aspect-[4/3] rounded-xl overflow-hidden border-4 border-[#1A3C2A] shadow-2xl">
+              <Image
+                src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=600&q=80"
+                alt="Rent kjøkken"
+                fill
+                className="object-cover"
+                sizes="25vw"
+              />
             </div>
           </div>
 
-          {/* Right — Grid */}
-          <div className="grid sm:grid-cols-2 gap-4">
-            {items.map((item) => (
-              <div
-                key={item.title}
-                className="rounded-xl border border-white/[0.06] bg-white/[0.03] p-5 hover:bg-white/[0.05] transition-colors duration-300 group"
-              >
-                <div className="w-9 h-9 rounded-lg bg-white/[0.06] flex items-center justify-center mb-3.5 group-hover:bg-[#2D6A4F]/20 transition-colors duration-300">
-                  <item.icon className="w-4 h-4 text-[#2D6A4F]" />
+          {/* Right — text + grid */}
+          <div>
+            <p className="text-[11px] text-[#C48B3F] uppercase tracking-[0.25em] mb-4">
+              Hvorfor oss
+            </p>
+            <h2 className="font-heading italic text-[clamp(2rem,4vw,3.5rem)] leading-[0.95] tracking-[-0.02em] text-white mb-6">
+              Trygghet i
+              <br />
+              <span className="text-[#C48B3F]">hver</span> detalj
+            </h2>
+            <p className="text-white/30 text-[15px] leading-relaxed mb-12 max-w-md">
+              Vi tar kvalitet på alvor. Alle partnere er nøye utvalgt, kontrollert og følges opp med kvalitetskontroll.
+            </p>
+
+            <div className="grid grid-cols-2 sm:grid-cols-3 gap-6">
+              {items.map((item) => (
+                <div key={item.title} className="group">
+                  <item.icon className="w-5 h-5 text-[#C48B3F]/60 mb-3 group-hover:text-[#C48B3F] transition-colors duration-500" />
+                  <h3 className="text-[13px] font-medium text-white mb-0.5">
+                    {item.title}
+                  </h3>
+                  <p className="text-[11px] text-white/25 leading-relaxed">
+                    {item.body}
+                  </p>
                 </div>
-                <h3 className="font-heading font-semibold text-[14px] text-white mb-1">
-                  {item.title}
-                </h3>
-                <p className="text-[12px] text-white/30 leading-relaxed">
-                  {item.body}
-                </p>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
         </div>
       </div>

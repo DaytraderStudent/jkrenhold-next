@@ -1,74 +1,58 @@
 "use client";
 
 import Image from "next/image";
-import { buttonVariants } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 
 export function CTASection() {
   return (
-    <section className="py-28 relative overflow-hidden">
+    <section className="relative py-24 lg:py-32 overflow-hidden">
       <div className="absolute inset-0 grain" />
 
-      <div className="relative z-10 max-w-6xl mx-auto px-5">
-        <div className="relative rounded-3xl overflow-hidden min-h-[420px] flex items-center">
+      <div className="relative z-10 max-w-[1400px] mx-auto px-6 lg:px-10">
+        <div className="relative rounded-[2rem] overflow-hidden">
           {/* Background image */}
           <Image
             src="https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?w=1400&q=80"
             alt=""
             fill
             className="object-cover"
-            sizes="(max-width: 1200px) 100vw, 1152px"
+            sizes="(max-width: 1440px) 100vw, 1400px"
           />
-          <div className="absolute inset-0 bg-[#1B4332]/85 backdrop-blur-sm" />
+          <div className="absolute inset-0 bg-[#1A3C2A]/90 backdrop-blur-sm" />
           <div className="absolute inset-0 grain" />
 
-          <div className="relative z-10 w-full px-8 py-16 sm:px-16 sm:py-20">
-            <div className="max-w-lg">
-              <h2 className="font-heading font-bold text-3xl sm:text-4xl lg:text-[2.8rem] tracking-tight text-white leading-[1.1] mb-4">
-                Klar for et renere hjem?
+          <div className="relative z-10 px-8 py-20 sm:px-16 sm:py-28 lg:px-24">
+            <div className="max-w-2xl">
+              <h2 className="font-heading italic text-[clamp(2.5rem,5vw,4.5rem)] leading-[0.95] tracking-[-0.02em] text-white mb-6">
+                Klar for et
+                <br />
+                <span className="text-[#C48B3F]">renere</span> hjem?
               </h2>
-              <p className="text-white/50 text-[15px] leading-relaxed mb-8 max-w-md">
-                Det tar under ett minutt å sende en forespørsel. Vi finner
-                den beste renholdsleverandøren i ditt område — helt gratis.
+              <p className="text-white/35 text-base leading-relaxed mb-10 max-w-md">
+                Under ett minutt å sende forespørsel. Vi finner den beste lokale renholdsleverandøren for deg.
               </p>
 
-              <div className="flex flex-col sm:flex-row gap-3">
-                <a
-                  href="#tilbud"
-                  className={buttonVariants({
-                    size: "lg",
-                    className:
-                      "bg-white text-[#1B4332] hover:bg-white/90 font-semibold h-11 px-7 text-sm cursor-pointer group",
-                  })}
-                >
-                  Få gratis tilbud
-                  <ArrowRight className="w-3.5 h-3.5 ml-2 transition-transform group-hover:translate-x-1" />
-                </a>
-                <a
-                  href="tel:+4790000000"
-                  className={buttonVariants({
-                    variant: "outline",
-                    size: "lg",
-                    className:
-                      "border-white/20 text-white hover:bg-white/10 h-11 px-7 text-sm cursor-pointer",
-                  })}
-                >
-                  Ring 900 00 000
-                </a>
-              </div>
+              <a
+                href="#tilbud"
+                className="inline-flex items-center gap-3 bg-white text-[#1A3C2A] font-medium text-sm px-8 py-4 rounded-full cursor-pointer group hover:bg-white/90 transition-colors duration-500"
+                style={{ transitionTimingFunction: "var(--ease-in-out)" }}
+              >
+                Få gratis tilbud
+                <ArrowRight className="w-4 h-4 transition-transform duration-500 group-hover:translate-x-1.5" />
+              </a>
             </div>
 
-            {/* Stats */}
-            <div className="flex gap-10 mt-12 pt-8 border-t border-white/10">
+            {/* Stats row */}
+            <div className="flex flex-wrap gap-12 mt-16 pt-10 border-t border-white/10">
               {[
                 { val: "15+", label: "Års erfaring" },
-                { val: "1 000+", label: "Fornøyde kunder" },
+                { val: "1 000+", label: "Kunder" },
                 { val: "4.8", label: "Snittkarakter" },
-                { val: "50+", label: "Byer dekket" },
+                { val: "50+", label: "Byer" },
               ].map((s) => (
                 <div key={s.label}>
-                  <p className="font-heading font-bold text-xl text-white">{s.val}</p>
-                  <p className="text-[11px] text-white/30 mt-0.5">{s.label}</p>
+                  <span className="font-heading italic text-3xl text-white">{s.val}</span>
+                  <p className="text-[10px] text-white/25 uppercase tracking-wider mt-1">{s.label}</p>
                 </div>
               ))}
             </div>
