@@ -1,135 +1,69 @@
 "use client";
 
-import { Phone, Mail, MapPin, Clock } from "lucide-react";
-
-const serviceLinks = [
-  { name: "Vaskehjelp", href: "#tjenester" },
-  { name: "Flyttevask", href: "#tjenester" },
-  { name: "Kontorrenhold", href: "#tjenester" },
-  { name: "Vinduspuss", href: "#tjenester" },
-  { name: "Trapperenhold", href: "#tjenester" },
-  { name: "Fasadevask", href: "#tjenester" },
-];
-
-const companyLinks = [
-  { name: "Om oss", href: "#om-oss" },
-  { name: "Våre partnere", href: "#om-oss" },
-  { name: "Områder", href: "#omrader" },
-  { name: "Vanlige spørsmål", href: "#faq" },
-  { name: "Personvern", href: "#" },
-  { name: "Vilkår", href: "#" },
-];
-
-const popularCities = [
-  "Oslo",
-  "Bergen",
-  "Trondheim",
-  "Stavanger",
-  "Drammen",
-  "Tønsberg",
-  "Kristiansand",
-  "Fredrikstad",
-];
+import { Phone, Mail, Clock } from "lucide-react";
 
 export function Footer() {
   return (
-    <footer id="kontakt" className="bg-[#0F1F19] text-white/70 relative">
-      <div className="absolute inset-0 noise-bg" />
+    <footer className="bg-[#0E1A14] text-white/50 relative">
+      <div className="absolute inset-0 grain" />
       <div className="relative z-10">
-        {/* Main footer */}
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-8">
+        <div className="max-w-6xl mx-auto px-5 py-16">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-10">
             {/* Brand */}
-            <div className="sm:col-span-2 lg:col-span-1">
+            <div className="col-span-2 md:col-span-1">
               <div className="flex items-center gap-2 mb-4">
-                <div className="w-8 h-8 rounded-lg bg-white/10 flex items-center justify-center">
-                  <span className="text-white font-heading font-bold text-sm">
-                    JK
-                  </span>
+                <div className="w-7 h-7 rounded-md bg-white/[0.08] flex items-center justify-center">
+                  <span className="font-heading font-bold text-white text-[10px]">JK</span>
                 </div>
-                <span className="font-heading font-semibold text-white text-base">
-                  JK Renhold
+                <span className="font-heading font-semibold text-white text-sm">JK Renhold</span>
+              </div>
+              <p className="text-[13px] leading-relaxed mb-5 max-w-[220px]">
+                Profesjonelt renhold for private og bedrifter. Vi kobler deg med de beste lokale leverandørene.
+              </p>
+              <div className="flex flex-col gap-2 text-[13px]">
+                <a href="tel:+4790000000" className="flex items-center gap-2 hover:text-white transition-colors">
+                  <Phone className="w-3 h-3" /> 900 00 000
+                </a>
+                <a href="mailto:post@jkrenhold.no" className="flex items-center gap-2 hover:text-white transition-colors">
+                  <Mail className="w-3 h-3" /> post@jkrenhold.no
+                </a>
+                <span className="flex items-center gap-2">
+                  <Clock className="w-3 h-3" /> Man–Fre 08–16
                 </span>
               </div>
-              <p className="text-sm leading-relaxed mb-6 max-w-xs">
-                Profesjonelt renhold for bedrifter og privatpersoner i hele
-                Norge. Vi kobler deg med de beste lokale renholdsleverandørene.
-              </p>
-              <div className="flex flex-col gap-3 text-sm">
-                <a
-                  href="tel:+4790000000"
-                  className="flex items-center gap-2 hover:text-white transition-colors"
-                >
-                  <Phone className="w-3.5 h-3.5 shrink-0" />
-                  900 00 000
-                </a>
-                <a
-                  href="mailto:post@jkrenhold.no"
-                  className="flex items-center gap-2 hover:text-white transition-colors"
-                >
-                  <Mail className="w-3.5 h-3.5 shrink-0" />
-                  post@jkrenhold.no
-                </a>
-                <div className="flex items-center gap-2">
-                  <Clock className="w-3.5 h-3.5 shrink-0" />
-                  Man–Fre 08:00–16:00
-                </div>
-              </div>
             </div>
 
-            {/* Services */}
+            {/* Tjenester */}
             <div>
-              <h3 className="font-heading font-semibold text-white text-sm mb-4">
-                Tjenester
-              </h3>
-              <ul className="flex flex-col gap-2.5">
-                {serviceLinks.map((link) => (
-                  <li key={link.name}>
-                    <a
-                      href={link.href}
-                      className="text-sm hover:text-white transition-colors"
-                    >
-                      {link.name}
-                    </a>
+              <h3 className="font-heading font-semibold text-white text-[13px] mb-4">Tjenester</h3>
+              <ul className="space-y-2 text-[13px]">
+                {["Vaskehjelp", "Flyttevask", "Kontorrenhold", "Vinduspuss", "Trapperenhold", "Fasadevask"].map((s) => (
+                  <li key={s}>
+                    <a href="#tjenester" className="hover:text-white transition-colors">{s}</a>
                   </li>
                 ))}
               </ul>
             </div>
 
-            {/* Company */}
+            {/* Selskap */}
             <div>
-              <h3 className="font-heading font-semibold text-white text-sm mb-4">
-                Selskap
-              </h3>
-              <ul className="flex flex-col gap-2.5">
-                {companyLinks.map((link) => (
-                  <li key={link.name}>
-                    <a
-                      href={link.href}
-                      className="text-sm hover:text-white transition-colors"
-                    >
-                      {link.name}
-                    </a>
+              <h3 className="font-heading font-semibold text-white text-[13px] mb-4">Selskap</h3>
+              <ul className="space-y-2 text-[13px]">
+                {["Om oss", "Partnere", "Områder", "Vanlige spørsmål", "Personvern", "Vilkår"].map((s) => (
+                  <li key={s}>
+                    <a href="#" className="hover:text-white transition-colors">{s}</a>
                   </li>
                 ))}
               </ul>
             </div>
 
-            {/* Popular cities */}
+            {/* Byer */}
             <div>
-              <h3 className="font-heading font-semibold text-white text-sm mb-4">
-                Populære byer
-              </h3>
-              <ul className="flex flex-col gap-2.5">
-                {popularCities.map((city) => (
-                  <li key={city}>
-                    <a
-                      href="#omrader"
-                      className="text-sm hover:text-white transition-colors flex items-center gap-1.5"
-                    >
-                      <MapPin className="w-3 h-3" />
-                      Renhold i {city}
-                    </a>
+              <h3 className="font-heading font-semibold text-white text-[13px] mb-4">Byer</h3>
+              <ul className="space-y-2 text-[13px]">
+                {["Oslo", "Bergen", "Trondheim", "Stavanger", "Drammen", "Kristiansand", "Tønsberg", "Fredrikstad"].map((s) => (
+                  <li key={s}>
+                    <a href="#omrader" className="hover:text-white transition-colors">{s}</a>
                   </li>
                 ))}
               </ul>
@@ -137,14 +71,13 @@ export function Footer() {
           </div>
         </div>
 
-        {/* Bottom bar */}
-        <div className="border-t border-white/10">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5 flex flex-col sm:flex-row items-center justify-between gap-3">
-            <p className="text-xs text-white/40">
-              &copy; {new Date().getFullYear()} JK Renhold. Alle rettigheter
-              reservert.
+        {/* Bottom */}
+        <div className="border-t border-white/[0.06]">
+          <div className="max-w-6xl mx-auto px-5 py-4 flex flex-col sm:flex-row items-center justify-between gap-2">
+            <p className="text-[11px] text-white/25">
+              &copy; {new Date().getFullYear()} JK Renhold. Alle rettigheter reservert.
             </p>
-            <p className="text-xs text-white/40">
+            <p className="text-[11px] text-white/25">
               Org.nr: 000 000 000
             </p>
           </div>

@@ -1,65 +1,52 @@
 "use client";
 
-import { MessageSquare, FileText, Sparkles } from "lucide-react";
-
-const steps = [
-  {
-    icon: MessageSquare,
-    step: "01",
-    title: "Fortell oss hva du trenger",
-    description:
-      "Send inn en kort forespørsel med type renhold, frekvens og sted. Det tar under ett minutt.",
-  },
-  {
-    icon: FileText,
-    step: "02",
-    title: "Motta tilbud",
-    description:
-      "Vi matcher deg med kvalifiserte, lokale renholdere og du mottar et uforpliktende tilbud innen 24 timer.",
-  },
-  {
-    icon: Sparkles,
-    step: "03",
-    title: "Nyt et rent hjem",
-    description:
-      "Velg den leverandøren som passer best. Vi følger opp for å sikre at du er fornøyd.",
-  },
-];
-
 export function HowItWorks() {
+  const steps = [
+    {
+      num: "01",
+      title: "Beskriv behovet",
+      body: "Fyll ut skjemaet med type renhold, adresse og ønsket frekvens. Under 60 sekunder.",
+    },
+    {
+      num: "02",
+      title: "Vi matcher deg",
+      body: "Innen 24 timer finner vi den beste lokale leverandøren for akkurat ditt behov.",
+    },
+    {
+      num: "03",
+      title: "Rent og ferdig",
+      body: "Renholderne kommer som avtalt. Vi følger opp for å sikre at du er fornøyd.",
+    },
+  ];
+
   return (
-    <section className="py-24 lg:py-32 relative overflow-hidden">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center max-w-2xl mx-auto mb-16">
-          <p className="text-sm font-medium text-accent tracking-wider uppercase mb-3">
-            Slik fungerer det
-          </p>
-          <h2 className="font-heading font-bold text-3xl sm:text-4xl tracking-tight text-foreground">
-            Tre steg til rent hjem
-          </h2>
-        </div>
+    <section id="prosess" className="py-28 bg-[#0E1A14] relative overflow-hidden">
+      <div className="absolute inset-0 grain" />
+      {/* Ambient light */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-[#2D6A4F]/8 rounded-full blur-[120px]" />
 
-        <div className="grid md:grid-cols-3 gap-8 lg:gap-12 relative">
-          {/* Connecting line (desktop) */}
-          <div className="hidden md:block absolute top-16 left-[20%] right-[20%] h-px bg-border" />
+      <div className="relative z-10 max-w-6xl mx-auto px-5">
+        <p className="text-[11px] font-medium text-[#C8965A] uppercase tracking-[0.2em] mb-2">
+          Prosess
+        </p>
+        <h2 className="font-heading font-bold text-3xl sm:text-[2.5rem] tracking-tight text-white leading-[1.1] mb-16 max-w-md">
+          Tre steg. Null stress.
+        </h2>
 
-          {steps.map((item, i) => (
-            <div key={item.step} className="relative text-center group">
-              {/* Step circle */}
-              <div className="relative mx-auto mb-6">
-                <div className="w-14 h-14 rounded-full bg-white border-2 border-primary flex items-center justify-center mx-auto relative z-10 group-hover:bg-primary transition-colors duration-300">
-                  <item.icon className="w-5 h-5 text-primary group-hover:text-white transition-colors duration-300" />
-                </div>
-                <span className="absolute -top-2 -right-2 w-7 h-7 rounded-full bg-accent text-foreground text-xs font-bold flex items-center justify-center z-20">
-                  {i + 1}
-                </span>
-              </div>
-
-              <h3 className="font-heading font-semibold text-lg mb-2">
-                {item.title}
+        <div className="grid md:grid-cols-3 gap-px bg-white/[0.06] rounded-2xl overflow-hidden">
+          {steps.map((s, i) => (
+            <div
+              key={s.num}
+              className="bg-[#0E1A14] p-8 sm:p-10 group hover:bg-white/[0.02] transition-colors duration-500"
+            >
+              <span className="block font-heading text-[4rem] font-bold text-white/[0.04] leading-none mb-6 group-hover:text-white/[0.08] transition-colors duration-500">
+                {s.num}
+              </span>
+              <h3 className="font-heading font-semibold text-lg text-white mb-3">
+                {s.title}
               </h3>
-              <p className="text-sm text-muted-foreground leading-relaxed max-w-xs mx-auto">
-                {item.description}
+              <p className="text-sm text-white/35 leading-relaxed">
+                {s.body}
               </p>
             </div>
           ))}

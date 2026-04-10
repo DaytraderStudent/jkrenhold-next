@@ -1,114 +1,89 @@
 "use client";
 
 import { MapPin } from "lucide-react";
-import { Badge } from "@/components/ui/badge";
 
-const regions = [
-  {
-    name: "Østlandet",
-    cities: [
-      "Oslo",
-      "Drammen",
-      "Fredrikstad",
-      "Sarpsborg",
-      "Moss",
-      "Lillestrøm",
-      "Ski",
-      "Jessheim",
-    ],
-  },
-  {
-    name: "Vestfold & Telemark",
-    cities: [
-      "Tønsberg",
-      "Sandefjord",
-      "Larvik",
-      "Horten",
-      "Skien",
-      "Porsgrunn",
-      "Nøtterøy",
-    ],
-  },
-  {
-    name: "Vestlandet",
-    cities: [
-      "Bergen",
-      "Stavanger",
-      "Haugesund",
-      "Ålesund",
-      "Molde",
-      "Kristiansund",
-    ],
-  },
-  {
-    name: "Sørlandet",
-    cities: [
-      "Kristiansand",
-      "Arendal",
-      "Grimstad",
-      "Mandal",
-      "Vennesla",
-    ],
-  },
-  {
-    name: "Trøndelag",
-    cities: ["Trondheim", "Steinkjer", "Levanger", "Stjørdal", "Namsos"],
-  },
-  {
-    name: "Nord-Norge",
-    cities: ["Tromsø", "Bodø", "Narvik", "Harstad", "Alta"],
-  },
+const cities = [
+  "Oslo",
+  "Bergen",
+  "Trondheim",
+  "Stavanger",
+  "Drammen",
+  "Kristiansand",
+  "Fredrikstad",
+  "Tønsberg",
+  "Sandefjord",
+  "Tromsø",
+  "Bodø",
+  "Ålesund",
+  "Haugesund",
+  "Larvik",
+  "Skien",
+  "Porsgrunn",
+  "Moss",
+  "Sarpsborg",
+  "Horten",
+  "Arendal",
 ];
 
 export function Areas() {
   return (
-    <section id="omrader" className="py-24 lg:py-32 relative">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid lg:grid-cols-[1fr_2fr] gap-12 lg:gap-20">
-          {/* Left */}
-          <div>
-            <p className="text-sm font-medium text-accent tracking-wider uppercase mb-3">
-              Dekning
-            </p>
-            <h2 className="font-heading font-bold text-3xl sm:text-4xl tracking-tight text-foreground mb-4">
-              Lokalt renhold, over hele landet
-            </h2>
-            <p className="text-muted-foreground text-lg leading-relaxed mb-6">
-              Vi har partnere i alle landets regioner. Finner vi ikke en
-              leverandør i ditt område, hjelper vi deg videre.
-            </p>
-            <div className="flex items-center gap-3 text-sm">
-              <div className="w-8 h-8 rounded-lg bg-primary/8 flex items-center justify-center">
-                <MapPin className="w-4 h-4 text-primary" />
-              </div>
-              <span className="text-muted-foreground">
-                <strong className="text-foreground">50+</strong> byer og
-                kommuner dekket
-              </span>
-            </div>
-          </div>
+    <section id="omrader" className="py-28 bg-[#0E1A14] relative overflow-hidden">
+      <div className="absolute inset-0 grain" />
+      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[900px] h-[300px] bg-[#2D6A4F]/6 rounded-full blur-[120px]" />
 
-          {/* Right — regions grid */}
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {regions.map((region) => (
-              <div key={region.name}>
-                <h3 className="font-heading font-semibold text-sm text-foreground mb-3">
-                  {region.name}
-                </h3>
-                <div className="flex flex-wrap gap-1.5">
-                  {region.cities.map((city) => (
-                    <Badge
-                      key={city}
-                      variant="secondary"
-                      className="font-normal text-xs bg-secondary hover:bg-primary hover:text-white transition-colors cursor-pointer"
-                    >
-                      {city}
-                    </Badge>
-                  ))}
-                </div>
-              </div>
+      <div className="relative z-10 max-w-6xl mx-auto px-5">
+        <div className="text-center max-w-lg mx-auto mb-14">
+          <p className="text-[11px] font-medium text-[#C8965A] uppercase tracking-[0.2em] mb-2">
+            Dekning
+          </p>
+          <h2 className="font-heading font-bold text-3xl sm:text-[2.5rem] tracking-tight text-white leading-[1.1] mb-3">
+            Lokalt renhold, hele landet
+          </h2>
+          <p className="text-white/35 text-sm leading-relaxed">
+            Vi har partnere i over 50 byer og kommuner. Finner vi ikke dekning i ditt område, hjelper vi deg videre.
+          </p>
+        </div>
+
+        {/* Marquee */}
+        <div className="overflow-hidden relative">
+          <div className="absolute left-0 top-0 bottom-0 w-24 bg-gradient-to-r from-[#0E1A14] to-transparent z-10" />
+          <div className="absolute right-0 top-0 bottom-0 w-24 bg-gradient-to-l from-[#0E1A14] to-transparent z-10" />
+
+          <div className="marquee-track" style={{ "--duration": "35s", "--gap": "1rem" } as React.CSSProperties}>
+            {[...cities, ...cities].map((city, i) => (
+              <a
+                key={i}
+                href="#tilbud"
+                className="shrink-0 flex items-center gap-2 px-5 py-2.5 rounded-full border border-white/[0.06] bg-white/[0.03] text-white/50 text-sm hover:bg-white/[0.06] hover:text-white/80 transition-colors cursor-pointer whitespace-nowrap"
+              >
+                <MapPin className="w-3 h-3 text-[#2D6A4F]" />
+                {city}
+              </a>
             ))}
           </div>
+
+          <div className="marquee-track mt-3" style={{ "--duration": "40s", "--gap": "1rem", animationDirection: "reverse" } as React.CSSProperties}>
+            {[...cities.slice(10), ...cities.slice(0, 10), ...cities.slice(10), ...cities.slice(0, 10)].map((city, i) => (
+              <a
+                key={i}
+                href="#tilbud"
+                className="shrink-0 flex items-center gap-2 px-5 py-2.5 rounded-full border border-white/[0.06] bg-white/[0.03] text-white/50 text-sm hover:bg-white/[0.06] hover:text-white/80 transition-colors cursor-pointer whitespace-nowrap"
+              >
+                <MapPin className="w-3 h-3 text-[#C8965A]/50" />
+                {city}
+              </a>
+            ))}
+          </div>
+        </div>
+
+        <div className="text-center mt-10">
+          <p className="text-[13px] text-white/25">
+            Ser du ikke din by?{" "}
+            <a href="#tilbud" className="text-[#C8965A]/60 hover:text-[#C8965A] transition-colors underline underline-offset-2">
+              Send en forespørsel
+            </a>{" "}
+            — vi utvider hele tiden.
+          </p>
         </div>
       </div>
     </section>

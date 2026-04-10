@@ -1,64 +1,52 @@
 "use client";
 
 import { buttonVariants } from "@/components/ui/button";
-import { ArrowRight, Phone } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 
 export function CTASection() {
   return (
-    <section className="py-24 lg:py-32 relative overflow-hidden">
-      <div className="absolute inset-0 mesh-gradient" />
+    <section className="py-28 relative overflow-hidden">
+      <div className="absolute inset-0 grain" />
 
-      <div className="relative z-10 max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <h2 className="font-heading font-bold text-3xl sm:text-4xl lg:text-5xl tracking-tight text-foreground mb-4">
-          Klar for et renere hjem?
-        </h2>
-        <p className="text-muted-foreground text-lg leading-relaxed mb-8 max-w-xl mx-auto">
-          Det koster ingenting å sende en forespørsel. Vi finner den beste
-          lokale renholdsleverandøren for deg — raskt og uforpliktende.
-        </p>
+      <div className="relative z-10 max-w-6xl mx-auto px-5">
+        <div className="relative bg-[#1B4332] rounded-3xl overflow-hidden">
+          {/* Ambient */}
+          <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-[#2D6A4F]/30 rounded-full blur-[100px]" />
+          <div className="absolute bottom-0 left-0 w-[300px] h-[300px] bg-[#C8965A]/10 rounded-full blur-[80px]" />
+          <div className="absolute inset-0 grain" />
 
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-          <a
-            href="#tilbud"
-            className={buttonVariants({ size: "lg", className: "bg-primary hover:bg-primary/90 text-white font-semibold px-8 h-13 text-base cursor-pointer group" })}
-          >
-            Få gratis tilbud nå
-            <ArrowRight className="w-4 h-4 ml-2 transition-transform group-hover:translate-x-1" />
-          </a>
-          <a
-            href="tel:+4790000000"
-            className={buttonVariants({ variant: "outline", size: "lg", className: "border-border hover:bg-secondary font-medium h-13 text-base cursor-pointer" })}
-          >
-            <Phone className="w-4 h-4 mr-2" />
-            Ring oss direkte
-          </a>
-        </div>
+          <div className="relative z-10 px-8 py-16 sm:px-16 sm:py-20 text-center">
+            <h2 className="font-heading font-bold text-3xl sm:text-4xl lg:text-[2.8rem] tracking-tight text-white leading-[1.1] mb-4 max-w-lg mx-auto">
+              Klar for et renere hjem?
+            </h2>
+            <p className="text-white/40 text-sm sm:text-base leading-relaxed mb-10 max-w-md mx-auto">
+              Send en uforpliktende forespørsel. Vi finner den beste lokale renholdsleverandøren for deg.
+            </p>
 
-        {/* Stats */}
-        <div className="grid grid-cols-3 gap-8 mt-16 pt-12 border-t border-border max-w-lg mx-auto">
-          <div>
-            <p className="font-heading font-bold text-3xl text-foreground">
-              15+
-            </p>
-            <p className="text-xs text-muted-foreground mt-1">
-              Års erfaring
-            </p>
-          </div>
-          <div>
-            <p className="font-heading font-bold text-3xl text-foreground">
-              1 000+
-            </p>
-            <p className="text-xs text-muted-foreground mt-1">
-              Fornøyde kunder
-            </p>
-          </div>
-          <div>
-            <p className="font-heading font-bold text-3xl text-foreground">
-              4.8
-            </p>
-            <p className="text-xs text-muted-foreground mt-1">
-              Snittkarakter
-            </p>
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
+              <a
+                href="#tilbud"
+                className={buttonVariants({
+                  size: "lg",
+                  className:
+                    "bg-white text-[#1B4332] hover:bg-white/90 font-semibold h-11 px-7 text-sm cursor-pointer group",
+                })}
+              >
+                Få gratis tilbud
+                <ArrowRight className="w-3.5 h-3.5 ml-2 transition-transform group-hover:translate-x-1" />
+              </a>
+              <a
+                href="tel:+4790000000"
+                className={buttonVariants({
+                  variant: "outline",
+                  size: "lg",
+                  className:
+                    "border-white/20 text-white hover:bg-white/10 h-11 px-7 text-sm cursor-pointer",
+                })}
+              >
+                Ring 900 00 000
+              </a>
+            </div>
           </div>
         </div>
       </div>

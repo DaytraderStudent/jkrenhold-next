@@ -1,89 +1,91 @@
 "use client";
 
+import { GlowCard } from "@/components/spotlight-card";
 import {
   ShieldCheck,
   Award,
   Users,
   Clock,
   BadgeCheck,
-  Handshake,
+  MapPin,
 } from "lucide-react";
 
-const guarantees = [
+const items = [
   {
     icon: ShieldCheck,
     title: "Kvalitetsgaranti",
-    description:
-      "Ikke fornøyd? Vi sender en ny renholder — uten ekstra kostnad.",
+    body: "Ikke fornøyd? Vi sender ny renholder — uten ekstra kostnad.",
+    color: "green" as const,
   },
   {
     icon: Award,
     title: "Sertifiserte partnere",
-    description:
-      "Alle våre renholdere er godkjent, forsikret og har gyldig renholdskort.",
+    body: "Godkjent renholdskort, ansvarsforsikring og referanser sjekket.",
+    color: "green" as const,
   },
   {
     icon: BadgeCheck,
-    title: "Forsikret",
-    description:
-      "Full ansvarsforsikring på alle oppdrag. Du er trygg med oss.",
+    title: "Full forsikring",
+    body: "Ansvarsforsikring dekker alle oppdrag. Trygt for deg og ditt.",
+    color: "blue" as const,
   },
   {
-    icon: Handshake,
+    icon: MapPin,
     title: "Lokal forankring",
-    description:
-      "Vi samarbeider med lokale leverandører som kjenner ditt nærområde.",
+    body: "Renholdere som kjenner nærområdet ditt og kan komme raskt.",
+    color: "green" as const,
   },
   {
     icon: Clock,
-    title: "Rask respons",
-    description:
-      "Vi matcher deg med en leverandør innen 24 timer etter henvendelse.",
+    title: "Svar innen 24t",
+    body: "Rask respons og matching med riktig leverandør etter behov.",
+    color: "blue" as const,
   },
   {
     icon: Users,
     title: "Personlig oppfølging",
-    description:
-      "Dedikert kontaktperson som sørger for at du er fornøyd, hver gang.",
+    body: "Dedikert kontaktperson som sørger for at alt fungerer.",
+    color: "green" as const,
   },
 ];
 
 export function Trust() {
   return (
-    <section id="om-oss" className="py-24 lg:py-32 bg-secondary relative">
-      <div className="absolute inset-0 noise-bg" />
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Header */}
-        <div className="text-center max-w-2xl mx-auto mb-16">
-          <p className="text-sm font-medium text-accent tracking-wider uppercase mb-3">
-            Derfor velger kunder oss
+    <section className="py-28 relative">
+      <div className="absolute inset-0 grain" />
+      <div className="relative z-10 max-w-6xl mx-auto px-5">
+        <div className="max-w-lg mb-14">
+          <p className="text-[11px] font-medium text-[#C8965A] uppercase tracking-[0.2em] mb-2">
+            Trygghet
           </p>
-          <h2 className="font-heading font-bold text-3xl sm:text-4xl tracking-tight text-foreground mb-4">
-            Trygghet i hver detalj
+          <h2 className="font-heading font-bold text-3xl sm:text-[2.5rem] tracking-tight leading-[1.1] mb-3">
+            Vi gjør det enkelt å stole på oss
           </h2>
-          <p className="text-muted-foreground text-lg leading-relaxed">
-            Vi tar kvalitet og sikkerhet på alvor. Alle våre partnere er nøye
-            utvalgt og følges opp kontinuerlig.
+          <p className="text-muted-foreground text-sm leading-relaxed">
+            Alle partnere er nøye utvalgt og følges opp med kvalitetskontroll.
           </p>
         </div>
 
-        {/* Grid */}
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {guarantees.map((item) => (
-            <div
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+          {items.map((item) => (
+            <GlowCard
               key={item.title}
-              className="bg-white rounded-2xl p-6 border border-border hover:shadow-md transition-shadow duration-300"
+              glowColor={item.color}
+              customSize
+              className="!aspect-auto !grid-rows-none !p-0 !shadow-none !rounded-xl"
             >
-              <div className="w-10 h-10 rounded-lg bg-primary/8 flex items-center justify-center mb-4">
-                <item.icon className="w-5 h-5 text-primary" />
+              <div className="relative z-10 p-6">
+                <div className="w-9 h-9 rounded-lg bg-[#1B4332]/8 flex items-center justify-center mb-4">
+                  <item.icon className="w-4 h-4 text-[#1B4332]" />
+                </div>
+                <h3 className="font-heading font-semibold text-[15px] mb-1.5 text-foreground">
+                  {item.title}
+                </h3>
+                <p className="text-[13px] text-muted-foreground leading-relaxed">
+                  {item.body}
+                </p>
               </div>
-              <h3 className="font-heading font-semibold text-base mb-2">
-                {item.title}
-              </h3>
-              <p className="text-sm text-muted-foreground leading-relaxed">
-                {item.description}
-              </p>
-            </div>
+            </GlowCard>
           ))}
         </div>
       </div>
