@@ -1,70 +1,54 @@
 "use client";
 
-import { BentoGrid, BentoGridItem } from "@/components/ui/bento-grid";
-import { Home, Truck, Building2, Sparkles, Wind, Waves } from "lucide-react";
+import Image from "next/image";
+import { ArrowUpRight } from "lucide-react";
 
 const services = [
   {
     title: "Vaskehjelp",
     description:
-      "Fast renholder som kjenner hjemmet ditt. Ukentlig eller annenhver uke — du bestemmer rytmen.",
-    icon: <Home className="w-5 h-5 text-[#2D6A4F]" />,
-    header: (
-      <div className="relative w-full h-full min-h-[8rem] rounded-lg overflow-hidden bg-gradient-to-br from-[#1B4332]/10 via-[#2D6A4F]/5 to-transparent flex items-end p-4">
-        <span className="font-heading text-[2.5rem] font-bold text-[#1B4332]/[0.07] leading-none">
-          450,-
-        </span>
-        <span className="text-[11px] text-muted-foreground ml-1 mb-2">/time</span>
-      </div>
-    ),
-    className: "md:col-span-2",
+      "Fast renholder som kjenner hjemmet ditt. Ukentlig eller annenhver uke.",
+    price: "Fra 450,-/t",
+    image:
+      "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=800&q=80",
+    span: "md:col-span-2 md:row-span-2",
+    large: true,
   },
   {
     title: "Flyttevask",
-    description:
-      "Grundig rengjøring som sikrer depositumet ditt. Sjekkliste inkludert.",
-    icon: <Truck className="w-5 h-5 text-[#C8965A]" />,
-    header: (
-      <div className="relative w-full h-full min-h-[8rem] rounded-lg overflow-hidden bg-gradient-to-br from-[#C8965A]/10 via-[#C8965A]/5 to-transparent flex items-center justify-center">
-        <div className="text-center">
-          <span className="block font-heading text-lg font-semibold text-[#C8965A]/60">Depositum</span>
-          <span className="block text-xs text-muted-foreground">garantert tilbake</span>
-        </div>
-      </div>
-    ),
-    className: "md:col-span-1",
+    description: "Grundig rengjøring som sikrer depositumet ditt.",
+    price: "Fra 3 500,-",
+    image:
+      "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=600&q=80",
+    span: "md:col-span-1",
+    large: false,
   },
   {
     title: "Kontorrenhold",
-    description:
-      "Profesjonelt renhold tilpasset bedriftens behov. Fastpris-avtale.",
-    icon: <Building2 className="w-5 h-5 text-[#1B4332]" />,
-    header: (
-      <div className="relative w-full h-full min-h-[8rem] rounded-lg overflow-hidden bg-gradient-to-br from-[#1B4332]/8 to-transparent flex items-center justify-center">
-        <div className="grid grid-cols-3 gap-2 opacity-20">
-          {[...Array(9)].map((_, i) => (
-            <div key={i} className="w-6 h-6 rounded bg-[#1B4332]" />
-          ))}
-        </div>
-      </div>
-    ),
-    className: "md:col-span-1",
+    description: "Profesjonelt renhold for bedrifter. Fastpris-avtale.",
+    price: "Få tilbud",
+    image:
+      "https://images.unsplash.com/photo-1497366216548-37526070297c?w=600&q=80",
+    span: "md:col-span-1",
+    large: false,
   },
   {
-    title: "Vinduspuss & spesialrenhold",
-    description:
-      "Vinduer, trappeoppganger, fasader og terrasser. De jobbene som krever litt ekstra.",
-    icon: <Wind className="w-5 h-5 text-[#6B8F71]" />,
-    header: (
-      <div className="relative w-full h-full min-h-[8rem] rounded-lg overflow-hidden bg-gradient-to-br from-[#6B8F71]/10 to-transparent flex items-center justify-center">
-        <div className="flex gap-3">
-          <Sparkles className="w-8 h-8 text-[#6B8F71]/20" />
-          <Waves className="w-8 h-8 text-[#6B8F71]/15" />
-          <Wind className="w-8 h-8 text-[#6B8F71]/10" />
-        </div>
-      </div>
-    ),
-    className: "md:col-span-2",
+    title: "Vinduspuss",
+    description: "Innvendig og utvendig. Også fasade og trapperenhold.",
+    price: "Få tilbud",
+    image:
+      "https://images.unsplash.com/photo-1527515637462-cee1395c529c?w=600&q=80",
+    span: "md:col-span-1",
+    large: false,
+  },
+  {
+    title: "Byggevask",
+    description: "Profesjonell rengjøring etter oppussing og nybygg.",
+    price: "Få tilbud",
+    image:
+      "https://images.unsplash.com/photo-1600585154526-990dced4db0d?w=600&q=80",
+    span: "md:col-span-1",
+    large: false,
   },
 ];
 
@@ -83,22 +67,52 @@ export function Services() {
             </h2>
           </div>
           <p className="text-muted-foreground text-sm max-w-xs leading-relaxed">
-            Alle våre partnere er sertifiserte, forsikrede og lokalt forankret.
+            Alle våre partnere er sertifiserte, forsikrede og lokalt
+            forankret i ditt nærområde.
           </p>
         </div>
 
-        <BentoGrid className="md:auto-rows-[16rem] gap-5">
-          {services.map((s, i) => (
-            <BentoGridItem
-              key={i}
-              title={s.title}
-              description={s.description}
-              header={s.header}
-              icon={s.icon}
-              className={`${s.className} border-border/60 bg-white/80 backdrop-blur-sm hover:shadow-[0_8px_30px_rgba(0,0,0,0.06)] cursor-pointer`}
-            />
+        {/* Bento-style image grid */}
+        <div className="grid md:grid-cols-4 gap-4">
+          {services.map((s) => (
+            <a
+              key={s.title}
+              href="#tilbud"
+              className={`group relative rounded-2xl overflow-hidden cursor-pointer ${s.span} ${
+                s.large ? "min-h-[420px]" : "min-h-[220px]"
+              }`}
+            >
+              {/* Image */}
+              <Image
+                src={s.image}
+                alt={s.title}
+                fill
+                className="object-cover transition-transform duration-700 group-hover:scale-105"
+                sizes={s.large ? "(max-width: 768px) 100vw, 50vw" : "(max-width: 768px) 100vw, 25vw"}
+              />
+              {/* Overlay */}
+              <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
+
+              {/* Content */}
+              <div className="absolute bottom-0 left-0 right-0 p-5 sm:p-6">
+                <div className="flex items-end justify-between">
+                  <div>
+                    <h3 className="font-heading font-semibold text-white text-lg mb-1 flex items-center gap-2">
+                      {s.title}
+                      <ArrowUpRight className="w-4 h-4 opacity-0 group-hover:opacity-100 transition-all duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                    </h3>
+                    <p className="text-white/50 text-[13px] leading-relaxed max-w-[280px]">
+                      {s.description}
+                    </p>
+                  </div>
+                  <span className="text-[#C8965A] text-sm font-medium whitespace-nowrap ml-4 bg-black/30 backdrop-blur-sm rounded-full px-3 py-1">
+                    {s.price}
+                  </span>
+                </div>
+              </div>
+            </a>
           ))}
-        </BentoGrid>
+        </div>
       </div>
     </section>
   );

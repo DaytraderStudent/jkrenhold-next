@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -12,7 +13,6 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Spotlight } from "@/components/ui/spotlight";
-import { TextGenerateEffect } from "@/components/ui/text-generate-effect";
 import { ArrowRight, CheckCircle2 } from "lucide-react";
 
 export function Hero() {
@@ -33,18 +33,24 @@ export function Hero() {
 
   return (
     <section className="relative min-h-[100svh] flex items-center overflow-hidden bg-[#0E1A14]">
-      {/* Spotlight effect */}
-      <Spotlight className="-top-40 left-0 md:left-60 md:-top-20" fill="#2D6A4F" />
+      {/* Background image with overlay */}
+      <div className="absolute inset-0">
+        <Image
+          src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1920&q=80"
+          alt=""
+          fill
+          className="object-cover opacity-15"
+          priority
+          sizes="100vw"
+        />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#0E1A14] via-[#0E1A14]/95 to-[#0E1A14]/70" />
+      </div>
 
-      {/* Grain */}
+      <Spotlight className="-top-40 left-0 md:left-60 md:-top-20" fill="#2D6A4F" />
       <div className="absolute inset-0 grain" />
 
-      {/* Gradient orbs */}
-      <div className="absolute top-1/4 left-1/3 w-[600px] h-[600px] bg-[#1B4332]/30 rounded-full blur-[120px]" />
-      <div className="absolute bottom-0 right-1/4 w-[400px] h-[400px] bg-[#C8965A]/10 rounded-full blur-[100px]" />
-
       <div className="relative z-10 max-w-6xl mx-auto px-5 py-28 w-full">
-        <div className="grid lg:grid-cols-[1.1fr_0.9fr] gap-16 lg:gap-20 items-center">
+        <div className="grid lg:grid-cols-[1.15fr_0.85fr] gap-16 lg:gap-20 items-center">
           {/* Left copy */}
           <div>
             <div className="inline-flex items-center gap-2 border border-white/10 bg-white/[0.04] rounded-full px-3.5 py-1 mb-8">
@@ -54,38 +60,61 @@ export function Hero() {
               </span>
             </div>
 
-            <h1 className="font-heading font-bold text-[clamp(2.2rem,5vw,3.8rem)] leading-[1.05] tracking-[-0.03em] text-white mb-6">
-              <TextGenerateEffect
-                words="Vi finner renholderen du fortjener"
-                className="font-heading"
-                duration={0.4}
-              />
+            <h1 className="font-heading font-bold text-[clamp(2.4rem,5.5vw,4rem)] leading-[1.05] tracking-[-0.03em] text-white mb-6">
+              Vi finner
+              <br />
+              <span className="text-[#C8965A]">renholderen</span>
+              <br />
+              du fortjener
             </h1>
 
-            <p className="text-white/40 text-base sm:text-lg leading-relaxed max-w-md mb-10">
+            <p className="text-white/40 text-[15px] sm:text-base leading-relaxed max-w-[380px] mb-10">
               Lokale, sertifiserte renholdere — håndplukket for ditt behov.
-              Privat eller bedrift. Gratis og uforpliktende.
+              Privat eller bedrift. Alltid gratis og uforpliktende.
             </p>
 
-            {/* Social proof — real-feeling, not templated */}
-            <div className="flex items-center gap-5">
-              <div className="flex -space-x-2">
-                {["KM", "EB", "ST", "ML"].map((initials, i) => (
+            {/* Image proof strip */}
+            <div className="flex items-center gap-4 mb-10">
+              <div className="flex -space-x-3">
+                {[
+                  "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=80&q=80",
+                  "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=80&q=80",
+                  "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=80&q=80",
+                  "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=80&q=80",
+                ].map((src, i) => (
                   <div
                     key={i}
-                    className="w-8 h-8 rounded-full border-2 border-[#0E1A14] bg-gradient-to-br from-[#2D6A4F] to-[#1B4332] flex items-center justify-center text-[9px] font-bold text-white/70"
+                    className="w-9 h-9 rounded-full border-2 border-[#0E1A14] overflow-hidden relative"
                   >
-                    {initials}
+                    <Image
+                      src={src}
+                      alt=""
+                      fill
+                      className="object-cover"
+                      sizes="36px"
+                    />
                   </div>
                 ))}
+                <div className="w-9 h-9 rounded-full border-2 border-[#0E1A14] bg-[#1B4332] flex items-center justify-center text-[9px] font-bold text-white/60">
+                  +996
+                </div>
               </div>
-              <div className="text-[13px] text-white/30 leading-tight">
+              <div className="text-[12px] text-white/30 leading-tight">
                 <span className="text-white/60 font-medium">1 000+</span>{" "}
                 fornøyde kunder
                 <br />
-                <span className="text-[#C8965A]/70">4.8</span> gjennomsnittlig
-                vurdering
+                <span className="text-[#C8965A]/60">★ 4.8</span>{" "}
+                gjennomsnittlig vurdering
               </div>
+            </div>
+
+            {/* Logos / trust */}
+            <div className="flex items-center gap-6 opacity-30">
+              {["Godkjent renholdskort", "Ansvarsforsikret", "Kvalitetsgaranti"].map((t) => (
+                <span key={t} className="text-[10px] text-white uppercase tracking-[0.1em] font-medium">
+                  {t}
+                </span>
+              ))}
             </div>
           </div>
 
@@ -96,7 +125,7 @@ export function Hero() {
               <div className="flex items-center justify-between mb-6">
                 <div>
                   <h2 className="font-heading font-semibold text-lg text-white">
-                    Få tilbud
+                    Få tilbud på renhold
                   </h2>
                   <p className="text-[13px] text-white/30 mt-0.5">
                     Svar innen 24 timer. Alltid gratis.
